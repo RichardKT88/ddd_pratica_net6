@@ -5,10 +5,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Data.Migrations
 {
-    /// <inheritdoc />
-    public partial class UserMigration : Migration
+    public partial class User : Migration
     {
-        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterDatabase()
@@ -32,6 +30,11 @@ namespace Data.Migrations
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
+            migrationBuilder.InsertData(
+                table: "User",
+                columns: new[] { "Id", "CreateAt", "Email", "Name", "UpdateAt" },
+                values: new object[] { new Guid("c2433ccc-787e-4cb7-9ce8-e7df5cd10787"), new DateTime(2022, 4, 13, 18, 1, 33, 287, DateTimeKind.Local).AddTicks(4937), "admin@email.com", "Administrador", new DateTime(2022, 4, 13, 18, 1, 33, 287, DateTimeKind.Local).AddTicks(4946) });
+
             migrationBuilder.CreateIndex(
                 name: "IX_User_Email",
                 table: "User",
@@ -39,7 +42,6 @@ namespace Data.Migrations
                 unique: true);
         }
 
-        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(

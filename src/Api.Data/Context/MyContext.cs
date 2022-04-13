@@ -14,6 +14,17 @@ namespace Api.Data.Context
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<UserEntity>(new UserMap().Configure);
+
+            modelBuilder.Entity<UserEntity>().HasData(
+                new UserEntity
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Administrador",
+                    Email = "admin@email.com",
+                    CreateAt = DateTime.Now,
+                    UpdateAt = DateTime.Now
+                }
+            );
         }
     }
 }
