@@ -58,11 +58,14 @@ namespace Api.Data.Repository
             return await _dataset.AnyAsync(p => p.Id.Equals(id));
         }
 
-        public async Task<T> SelectAsync(Guid id)
+        public async Task<T?> SelectAsync(Guid id)
         {
             try
             {
-                return await _dataset.SingleOrDefaultAsync(p => p.Id.Equals(id));
+                var result = await _dataset.SingleOrDefaultAsync(p => p.Id.Equals(id));
+                if (result == null)
+                    return null;
+                return result;
             }
             catch (Exception ex)
             {
