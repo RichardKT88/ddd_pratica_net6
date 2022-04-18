@@ -18,15 +18,16 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+    <PackageReference Include="Moq" Version="4.17.2" />
+    <PackageReference Include="AutoMapper" Version="11.0.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="Faker.NETCore" Version="1.0.2" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Api.Service\Service.csproj" />
     <ProjectReference Include="..\Api.CrossCutting\CrossCutting.csproj" />
-    <ProjectReference Include="..\Api.Data\Data.csproj" />
     <ProjectReference Include="..\Api.Domain\Domain.csproj" />
-    <ProjectReference Include="..\Api.Application\Application.csproj" />
   </ItemGroup>
 
 </Project>
