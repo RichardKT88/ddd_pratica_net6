@@ -1,7 +1,6 @@
 using System;
 using Api.CrossCutting.Mappings;
 using AutoMapper;
-using Xunit;
 
 namespace Api.Service.Test;
 
@@ -20,8 +19,8 @@ public abstract class BaseTesteService
         {
             var config = new MapperConfiguration(cfg =>
             {
-                cfg.AddProfile(new ModelToEntityProfile());
                 cfg.AddProfile(new DtoToModelProfile());
+                cfg.AddProfile(new EntityToDtoProfile());
                 cfg.AddProfile(new ModelToEntityProfile());
             });
 
@@ -29,7 +28,6 @@ public abstract class BaseTesteService
         }
         public void Dispose()
         {
-            throw new NotImplementedException();
         }
     }
 }
