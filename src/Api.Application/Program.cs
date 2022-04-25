@@ -14,6 +14,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -50,6 +51,16 @@ builder.Services.AddSwaggerGen(c =>
 
     });
 });
+
+if (builder.Environment.IsEnvironment("Testing"))
+{
+    Environment.SetEnvironmentVariable("DB_CONNECTION", "Server=localhost;Port=3306;Database=dbAPI_Integration;Uid=root;Pwd=pass123");
+    Environment.SetEnvironmentVariable("DATABASE", "MYSQL");
+    Environment.SetEnvironmentVariable("MIGRATION", "APLICAR");
+    Environment.SetEnvironmentVariable("Audience", "ExemploAudience");
+    Environment.SetEnvironmentVariable("Issuer", "ExemploIssuer");
+    Environment.SetEnvironmentVariable("Seconds", "28800");
+}
 
 ConfigureService.ConfigureDependenciesService(builder.Services);
 ConfigureRepository.ConfigureDependenciesRepository(builder.Services);

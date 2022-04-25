@@ -23,7 +23,10 @@
                 "ASPNETCORE_ENVIRONMENT": "Development",
                 "DB_CONNECTION" : "Server=localhost;Port=3306;Database=dbAPI3;Uid=root;Pwd=pass123",
                 "DATABASE" : "MYSQL",
-                "MIGRATION": "APLICAR"
+                "MIGRATION": "APLICAR",
+                "Audience": "ExemploAudience",
+                "Issuer": "ExemploIssuer",
+                "Seconds": "28800"
             },
             "sourceFileMap": {
                 "/Views": "${workspaceFolder}/Views"
