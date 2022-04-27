@@ -91,7 +91,7 @@ namespace Api.Service.Services
                 authenticated = true,
                 created = createDate.ToString("yyyy-MM-dd HH:mm:ss"),
                 expiration = expirationDate.ToString("yyyy-MM-dd HH:mm:ss"),
-                acessToken = token,
+                accessToken = token,
                 username = user.Email,
                 name = user.Name,
                 message = "Usuário logado com sucesso"

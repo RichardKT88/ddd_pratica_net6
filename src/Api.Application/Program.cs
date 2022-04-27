@@ -6,13 +6,14 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+//Ambiente para teste de integração
 if (builder.Environment.IsEnvironment("Testing"))
 {
     Environment.SetEnvironmentVariable("DB_CONNECTION", "Server=localhost;Port=3306;Database=dbAPI_Integration;Uid=root;Pwd=pass123");
@@ -76,12 +77,6 @@ builder.Services.AddSingleton(mapper);
 var signingConfigurations = new SigningConfigurations();
 builder.Services.AddSingleton(signingConfigurations);
 
-var tokenConfigurations = new TokenConfigurations();
-new ConfigureFromConfigurationOptions<TokenConfigurations>(
-    builder.Configuration.GetSection("TokenConfigurations"))
-    .Configure(tokenConfigurations);
-builder.Services.AddSingleton(tokenConfigurations);
-
 builder.Services.AddAuthentication(authOptions =>
 {
     authOptions.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -90,13 +85,20 @@ builder.Services.AddAuthentication(authOptions =>
 {
     var paramsValidation = bearerOptions.TokenValidationParameters;
     paramsValidation.IssuerSigningKey = signingConfigurations.Key;
-    paramsValidation.ValidAudience = tokenConfigurations.Audience;
-    paramsValidation.ValidIssuer = tokenConfigurations.Issuer;
+    paramsValidation.ValidAudience = Environment.GetEnvironmentVariable("Audience");
+    paramsValidation.ValidIssuer = Environment.GetEnvironmentVariable("Issuer");
+    // Valida a assinatura de um token recebido
     paramsValidation.ValidateIssuerSigningKey = true;
+    // Verifica se um token recebido ainda é válido
     paramsValidation.ValidateLifetime = true;
+    // Tempo de tolerância para a expiração de um token (utilizado
+    // caso haja problemas de sincronismo de horário entre diferentes
+    // computadores envolvidos no processo de comunicação)
     paramsValidation.ClockSkew = TimeSpan.Zero;
 });
 
+// Ativa o uso do token como forma de autorizar o acesso
+// a recursos deste projeto
 builder.Services.AddAuthorization(auth =>
 {
     auth.AddPolicy("Bearer", new AuthorizationPolicyBuilder()
