@@ -7,6 +7,7 @@ using Api.Data.Context;
 using Api.Domain.Dtos;
 using AutoMapper;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 
@@ -22,19 +23,19 @@ namespace Api.Integration.Test
 
         public BaseIntegration()
         {
-            hostApi = "Http:localhost:5000/api/";
-            var builder = new WebHostBuilder()
-                .UseEnvironment("Testing")
-                .UseHttpSys();
+            hostApi = "http://localhost:5161/api/";
+            var application = new WebApplicationFactory<Program>()
+                .WithWebHostBuilder(builder =>
+                {
+                    builder.UseEnvironment("Testing");
+                });
 
-            var server = new TestServer(builder);
-
-            myContext = server.Host.Services.GetService(typeof(MyContext)) as MyContext;
+            myContext = application.Services.GetService(typeof(MyContext)) as MyContext;
             myContext.Database.Migrate();
 
             mapper = new AutoMapperFixture().GetMapper();
 
-            client = server.CreateClient();
+            client = application.CreateClient();
         }
 
         public async Task AdicionarToken()

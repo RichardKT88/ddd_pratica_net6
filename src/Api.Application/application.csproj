@@ -19,4 +19,8 @@
     <ProjectReference Include="..\Api.CrossCutting\CrossCutting.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <InternalsVisibleTo Include="Api.Integration.Test" />
+  </ItemGroup>
+
 </Project>

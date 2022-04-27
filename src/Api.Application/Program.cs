@@ -13,7 +13,15 @@ using Microsoft.OpenApi.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
+if (builder.Environment.IsEnvironment("Testing"))
+{
+    Environment.SetEnvironmentVariable("DB_CONNECTION", "Server=localhost;Port=3306;Database=dbAPI_Integration;Uid=root;Pwd=pass123");
+    Environment.SetEnvironmentVariable("DATABASE", "MYSQL");
+    Environment.SetEnvironmentVariable("MIGRATION", "APLICAR");
+    Environment.SetEnvironmentVariable("Audience", "ExemploAudience");
+    Environment.SetEnvironmentVariable("Issuer", "ExemploIssuer");
+    Environment.SetEnvironmentVariable("Seconds", "28800");
+}
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -51,16 +59,6 @@ builder.Services.AddSwaggerGen(c =>
 
     });
 });
-
-if (builder.Environment.IsEnvironment("Testing"))
-{
-    Environment.SetEnvironmentVariable("DB_CONNECTION", "Server=localhost;Port=3306;Database=dbAPI_Integration;Uid=root;Pwd=pass123");
-    Environment.SetEnvironmentVariable("DATABASE", "MYSQL");
-    Environment.SetEnvironmentVariable("MIGRATION", "APLICAR");
-    Environment.SetEnvironmentVariable("Audience", "ExemploAudience");
-    Environment.SetEnvironmentVariable("Issuer", "ExemploIssuer");
-    Environment.SetEnvironmentVariable("Seconds", "28800");
-}
 
 ConfigureService.ConfigureDependenciesService(builder.Services);
 ConfigureRepository.ConfigureDependenciesRepository(builder.Services);
@@ -118,6 +116,8 @@ if (app.Environment.IsDevelopment())
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "Curso de API com AspNetCore 6.0");
     });
 }
+
+
 
 app.UseAuthorization();
 
