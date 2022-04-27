@@ -2,11 +2,13 @@ using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using Api.Application;
 using Api.CrossCutting.Mappings;
 using Api.Data.Context;
 using Api.Domain.Dtos;
 using AutoMapper;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.TestHost;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 
@@ -22,10 +24,10 @@ namespace Api.Integration.Test
 
         public BaseIntegration()
         {
-            hostApi = "Http:localhost:5000/api/";
+            hostApi = "http://localhost:5161/api/";
             var builder = new WebHostBuilder()
                 .UseEnvironment("Testing")
-                .UseHttpSys();
+                .UseStartup<Startup>();
 
             var server = new TestServer(builder);
 
