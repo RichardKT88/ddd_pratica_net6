@@ -11,7 +11,7 @@ namespace Api.Application.Test.Municipio.QuandoRequisitarCreate
 {
     public class Retorno_BadRequest
     {
-        private MunicipiosController _controller;
+        private MunicipiosController? _controller;
 
         [Fact(DisplayName = "É possível Realizar o Created.")]
         public async Task E_Possivel_Invocar_a_Controller_Create()

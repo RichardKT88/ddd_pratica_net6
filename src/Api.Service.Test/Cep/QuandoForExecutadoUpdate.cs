@@ -8,8 +8,8 @@ namespace Api.Service.Test.Cep
 {
     public class QuandoForExecutadoUpdate : CepTestes
     {
-        private ICepService _service;
-        private Mock<ICepService> _serviceMock;
+        private ICepService? _service;
+        private Mock<ICepService>? _serviceMock;
 
         [Fact(DisplayName = "É Possivel executar o Método Update.")]
         public async Task E_Possivel_Executar_Metodo_Update()

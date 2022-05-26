@@ -3,7 +3,7 @@ namespace Api.Domain.Models
     public class MunicipioModel : BaseModel
     {
         private string? _nome;
-        public string Nome
+        public string? Nome
         {
             get { return _nome; }
             set { _nome = value; }

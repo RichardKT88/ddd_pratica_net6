@@ -12,7 +12,7 @@ namespace Api.Application.Test.Uf.QuandoRequisitarGetAll
 {
     public class Retorno_OK
     {
-        private UfsController _controller;
+        private UfsController? _controller;
 
         [Fact(DisplayName = "É possível Realizar o GetAll.")]
         public async Task E_Possivel_Invocar_a_Controller_GetAll()

@@ -1,4 +1,3 @@
-using System;
 using System.Threading.Tasks;
 using Api.Application.Controllers;
 using Api.Domain.Dtos.Municipio;
@@ -11,14 +10,14 @@ namespace Api.Application.Test.Municipio.QuandoRequisitarGetCompleteByIBGE
 {
     public class Retorno_NotFound
     {
-        private MunicipiosController _controller;
+        private MunicipiosController? _controller;
 
         [Fact(DisplayName = "É possível Realizar o Get.")]
         public async Task E_Possivel_Invocar_a_Controller_Get()
         {
             var serviceMock = new Mock<IMunicipioService>();
 
-            serviceMock.Setup(m => m.GetCompleteByIBGE(It.IsAny<int>())).Returns(Task.FromResult((MunicipioDtoCompleto)null));
+            serviceMock.Setup(m => m.GetCompleteByIBGE(It.IsAny<int>())).Returns(Task.FromResult((MunicipioDtoCompleto?)null)!);
 
             _controller = new MunicipiosController(serviceMock.Object);
             var result = await _controller.GetCompleteByIBGE(1);

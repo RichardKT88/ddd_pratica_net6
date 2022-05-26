@@ -44,7 +44,7 @@ namespace Api.Application.Test.Usuario.QuandoRequisitarGetAll
             Assert.True(result is OkObjectResult);
 
             var resultValue = ((OkObjectResult)result).Value as IEnumerable<UserDto>;
-            Assert.True(resultValue.Count() == 2);
+            Assert.True(resultValue!.Count() == 2);
 
         }
     }

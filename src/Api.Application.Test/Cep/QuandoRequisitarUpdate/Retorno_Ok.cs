@@ -11,7 +11,7 @@ namespace Api.Application.Test.Cep.QuandoRequisitarUpdate
 {
     public class Retorno_Ok
     {
-        private CepsController _controller;
+        private CepsController? _controller;
 
         [Fact(DisplayName = "É possível Realizar o Updated.")]
         public async Task E_Possivel_Invocar_a_Controller_Create()

@@ -9,8 +9,8 @@ namespace Api.Service.Test.Usuario
 {
     public class QuandoForExecutadoGet : UsuarioTestes
     {
-        private IUserService _service;
-        private Mock<IUserService> _serviceMock;
+        private IUserService? _service;
+        private Mock<IUserService>? _serviceMock;
 
         [Fact(DisplayName = "É possivel Executar o Método GET.")]
         public async Task E_Possivel_Executar_Metodo_Get()
@@ -25,7 +25,7 @@ namespace Api.Service.Test.Usuario
             Assert.Equal(NomeUsuario, result.Name);
 
             _serviceMock = new Mock<IUserService>();
-            _serviceMock.Setup(m => m.Get(It.IsAny<Guid>())).Returns(Task.FromResult((UserDto)null));
+            _serviceMock.Setup(m => m.Get(It.IsAny<Guid>())).Returns(Task.FromResult((UserDto?)null)!);
             _service = _serviceMock.Object;
 
             var _record = await _service.Get(IdUsuario);

@@ -27,22 +27,22 @@ namespace Api.Integration.Test.Municipio
 
 
             //Post
-            var response = await PostJsonAsync(municipioDto, $"{hostApi}municipios", client);
+            var response = await PostJsonAsync(municipioDto, $"{hostApi}municipios", client!);
             var postResult = await response.Content.ReadAsStringAsync();
             var registroPost = JsonConvert.DeserializeObject<MunicipioDtoCreateResult>(postResult);
             Assert.Equal(HttpStatusCode.Created, response.StatusCode);
-            Assert.Equal("São Paulo", registroPost.Nome);
+            Assert.Equal("São Paulo", registroPost!.Nome);
             Assert.Equal(3550308, registroPost.CodIBGE);
             Assert.True(registroPost.Id != default(Guid));
 
             //Get All
-            response = await client.GetAsync($"{hostApi}municipios");
+            response = await client!.GetAsync($"{hostApi}municipios");
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
             var jsonResult = await response.Content.ReadAsStringAsync();
             var listaFromJson = JsonConvert.DeserializeObject<IEnumerable<MunicipioDto>>(jsonResult);
             Assert.NotNull(listaFromJson);
-            Assert.True(listaFromJson.Count() > 0);
-            Assert.True(listaFromJson.Where(r => r.Id == registroPost.Id).Count() == 1);
+            Assert.True(listaFromJson!.Count() > 0);
+            Assert.True(listaFromJson!.Where(r => r.Id == registroPost.Id).Count() == 1);
 
             var updateMunicipioDto = new MunicipioDtoUpdate()
             {
@@ -60,7 +60,7 @@ namespace Api.Integration.Test.Municipio
             var registroAtualizado = JsonConvert.DeserializeObject<MunicipioDtoUpdateResult>(jsonResult);
 
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-            Assert.Equal("Limeira", registroAtualizado.Nome);
+            Assert.Equal("Limeira", registroAtualizado!.Nome);
             Assert.Equal(3526902, registroAtualizado.CodIBGE);
 
             //GET Id
@@ -69,7 +69,7 @@ namespace Api.Integration.Test.Municipio
             jsonResult = await response.Content.ReadAsStringAsync();
             var registroSelecionado = JsonConvert.DeserializeObject<MunicipioDto>(jsonResult);
             Assert.NotNull(registroSelecionado);
-            Assert.Equal(registroSelecionado.Nome, registroAtualizado.Nome);
+            Assert.Equal(registroSelecionado!.Nome, registroAtualizado.Nome);
             Assert.Equal(registroSelecionado.CodIBGE, registroAtualizado.CodIBGE);
 
             //GET Complete/Id
@@ -78,10 +78,10 @@ namespace Api.Integration.Test.Municipio
             jsonResult = await response.Content.ReadAsStringAsync();
             var registroSelecionadoCompleto = JsonConvert.DeserializeObject<MunicipioDtoCompleto>(jsonResult);
             Assert.NotNull(registroSelecionadoCompleto);
-            Assert.Equal(registroSelecionadoCompleto.Nome, registroAtualizado.Nome);
+            Assert.Equal(registroSelecionadoCompleto!.Nome, registroAtualizado.Nome);
             Assert.Equal(registroSelecionadoCompleto.CodIBGE, registroAtualizado.CodIBGE);
             Assert.NotNull(registroSelecionadoCompleto.Uf);
-            Assert.Equal("São Paulo", registroSelecionadoCompleto.Uf.Nome);
+            Assert.Equal("São Paulo", registroSelecionadoCompleto!.Uf!.Nome);
             Assert.Equal("SP", registroSelecionadoCompleto.Uf.Sigla);
 
             //GET byIBGE/CodIBGE
@@ -90,10 +90,10 @@ namespace Api.Integration.Test.Municipio
             jsonResult = await response.Content.ReadAsStringAsync();
             var registroSelecionadoIBGECompleto = JsonConvert.DeserializeObject<MunicipioDtoCompleto>(jsonResult);
             Assert.NotNull(registroSelecionadoIBGECompleto);
-            Assert.Equal(registroSelecionadoIBGECompleto.Nome, registroAtualizado.Nome);
+            Assert.Equal(registroSelecionadoIBGECompleto!.Nome, registroAtualizado.Nome);
             Assert.Equal(registroSelecionadoIBGECompleto.CodIBGE, registroAtualizado.CodIBGE);
             Assert.NotNull(registroSelecionadoIBGECompleto.Uf);
-            Assert.Equal("São Paulo", registroSelecionadoIBGECompleto.Uf.Nome);
+            Assert.Equal("São Paulo", registroSelecionadoIBGECompleto!.Uf!.Nome);
             Assert.Equal("SP", registroSelecionadoIBGECompleto.Uf.Sigla);
 
             //DELETE

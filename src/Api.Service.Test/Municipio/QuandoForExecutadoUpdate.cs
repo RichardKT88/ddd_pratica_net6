@@ -7,8 +7,8 @@ namespace Api.Service.Test.Municipio
 {
     public class QuandoForExecutadoUpdate : MunicipioTestes
     {
-        private IMunicipioService _service;
-        private Mock<IMunicipioService> _serviceMock;
+        private IMunicipioService? _service;
+        private Mock<IMunicipioService>? _serviceMock;
 
         [Fact(DisplayName = "É Possivel executar o Método Update.")]
         public async Task E_Possivel_Executar_Metodo_Update()

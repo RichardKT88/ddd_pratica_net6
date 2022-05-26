@@ -24,7 +24,7 @@ namespace Api.Data.Test
         {
             using (var context = _serviceProvider?.GetService<MyContext>())
             {
-                UserImplementation _repositorio = new UserImplementation(context);
+                UserImplementation _repositorio = new UserImplementation(context!);
                 UserEntity _entity = new UserEntity
                 {
                     Email = Faker.Internet.Email(),
@@ -43,12 +43,12 @@ namespace Api.Data.Test
                 Assert.Equal(_entity.Email, _registroAtualizado?.Email);
                 Assert.Equal(_entity.Name, _registroAtualizado?.Name);
 
-                var _registroExiste = await _repositorio.ExistAsync(_registroAtualizado.Id);
+                var _registroExiste = await _repositorio.ExistAsync(_registroAtualizado!.Id);
                 Assert.True(_registroExiste);
 
                 var _registroSelecionado = await _repositorio.SelectAsync(_registroAtualizado.Id);
                 Assert.NotNull(_registroSelecionado);
-                Assert.Equal(_registroAtualizado?.Email, _registroSelecionado.Email);
+                Assert.Equal(_registroAtualizado?.Email, _registroSelecionado!.Email);
                 Assert.Equal(_registroAtualizado?.Name, _registroAtualizado?.Name);
 
                 var _todosRegistros = await _repositorio.SelectAsync();

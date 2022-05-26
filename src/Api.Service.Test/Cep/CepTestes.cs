@@ -8,12 +8,12 @@ namespace Api.Service.Test.Municipio
 {
     public class CepTestes
     {
-        public static string CepOriginal { get; set; }
-        public static string LogradouroOriginal { get; set; }
-        public static string NumeroOriginal { get; set; }
-        public static string CepAlterado { get; set; }
-        public static string LogradouroAlterado { get; set; }
-        public static string NumeroAlterado { get; set; }
+        public static string? CepOriginal { get; set; }
+        public static string? LogradouroOriginal { get; set; }
+        public static string? NumeroOriginal { get; set; }
+        public static string? CepAlterado { get; set; }
+        public static string? LogradouroAlterado { get; set; }
+        public static string? NumeroAlterado { get; set; }
         public static Guid IdMunicipio { get; set; }
         public static Guid IdCep { get; set; }
 

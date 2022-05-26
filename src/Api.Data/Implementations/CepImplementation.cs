@@ -17,8 +17,8 @@ namespace Api.Data.Implementations
         public async Task<CepEntity?> SelectAsync(string cep)
         {
             return await _dataset.Include(c => c.Municipio)
-                                 .ThenInclude(m => m.Uf)
-                                 .SingleOrDefaultAsync(u => u.Cep.Equals(cep));
+                                 .ThenInclude(m => m!.Uf)
+                                 .SingleOrDefaultAsync(u => u!.Cep!.Equals(cep));
         }
     }
 }

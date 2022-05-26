@@ -27,7 +27,7 @@ namespace Api.Application.Test.Usuario.QuandoRequisitarDelete
 
             var resultValue = ((OkObjectResult)result).Value;
             Assert.NotNull(resultValue);
-            Assert.True((Boolean)resultValue);
+            Assert.True((Boolean)resultValue!);
 
         }
     }

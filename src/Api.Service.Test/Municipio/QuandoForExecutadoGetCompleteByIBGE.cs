@@ -7,8 +7,8 @@ namespace Api.Service.Test.Municipio
 {
     public class QuandoForExecutadoGetCompleteByIBGE : MunicipioTestes
     {
-        private IMunicipioService _service;
-        private Mock<IMunicipioService> _serviceMock;
+        private IMunicipioService? _service;
+        private Mock<IMunicipioService>? _serviceMock;
 
         [Fact(DisplayName = "É Possivel Executar o Método GET Complete By IBGE.")]
         public async Task E_Possivel_Executar_Metodo_Get_Complete_by_IBGE()

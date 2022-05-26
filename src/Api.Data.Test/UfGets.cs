@@ -12,7 +12,7 @@ namespace Api.Data.Test
     public class UfGets : BaseTest, IClassFixture<DbTeste>
     {
         //O ServiceProvider passa para a aplicação de teste o repositório.
-        private ServiceProvider _serviceProvider;
+        private ServiceProvider? _serviceProvider;
         public UfGets(DbTeste dbTeste)
         {
             _serviceProvider = dbTeste.ServiceProvider;
@@ -22,9 +22,9 @@ namespace Api.Data.Test
         [Trait("Gets", "UfEntity")]
         public async Task E_Possivel_Realizar_Gets_UF()
         {
-            using (var context = _serviceProvider.GetService<MyContext>())
+            using (var context = _serviceProvider!.GetService<MyContext>())
             {
-                UfImplementation _repositorio = new UfImplementation(context);
+                UfImplementation _repositorio = new UfImplementation(context!);
                 UfEntity _entity = new UfEntity
                 {
                     Id = new Guid("e7e416de-477c-4fa3-a541-b5af5f35ccf6"),
@@ -37,7 +37,7 @@ namespace Api.Data.Test
 
                 var _registroSelecionado = await _repositorio.SelectAsync(_entity.Id);
                 Assert.NotNull(_registroSelecionado);
-                Assert.Equal(_entity.Sigla, _registroSelecionado.Sigla);
+                Assert.Equal(_entity.Sigla, _registroSelecionado!.Sigla);
                 Assert.Equal(_entity.Nome, _registroSelecionado.Nome);
                 Assert.Equal(_entity.Id, _registroSelecionado.Id);
 

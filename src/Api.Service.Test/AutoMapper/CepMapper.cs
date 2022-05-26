@@ -70,12 +70,12 @@ namespace Api.Service.Test.AutoMapper
             Assert.Equal(cepDto.Cep, entity.Cep);
 
             var cepDtoCompleto = Mapper.Map<CepDto>(listaEntity.FirstOrDefault());
-            Assert.Equal(cepDtoCompleto.Id, listaEntity.FirstOrDefault().Id);
-            Assert.Equal(cepDtoCompleto.Cep, listaEntity.FirstOrDefault().Cep);
-            Assert.Equal(cepDtoCompleto.Logradouro, listaEntity.FirstOrDefault().Logradouro);
-            Assert.Equal(cepDtoCompleto.Numero, listaEntity.FirstOrDefault().Numero);
+            Assert.Equal(cepDtoCompleto.Id, listaEntity.FirstOrDefault()!.Id);
+            Assert.Equal(cepDtoCompleto.Cep, listaEntity.FirstOrDefault()!.Cep);
+            Assert.Equal(cepDtoCompleto.Logradouro, listaEntity.FirstOrDefault()!.Logradouro);
+            Assert.Equal(cepDtoCompleto.Numero, listaEntity.FirstOrDefault()!.Numero);
             Assert.NotNull(cepDtoCompleto.Municipio);
-            Assert.NotNull(cepDtoCompleto.Municipio.Uf);
+            Assert.NotNull(cepDtoCompleto.Municipio!.Uf);
 
             var listaDto = Mapper.Map<List<CepDto>>(listaEntity);
             Assert.True(listaDto.Count() == listaEntity.Count());

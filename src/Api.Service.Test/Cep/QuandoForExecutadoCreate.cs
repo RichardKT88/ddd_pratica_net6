@@ -1,6 +1,5 @@
 using System.Threading.Tasks;
 using Api.Domain.Interfaces.Services.Cep;
-using Api.Domain.Interfaces.Services.Municipio;
 using Api.Service.Test.Municipio;
 using Moq;
 using Xunit;
@@ -9,8 +8,8 @@ namespace Api.Service.Test.Cep
 {
     public class QuandoForExecutadoCreate : CepTestes
     {
-        private ICepService _service;
-        private Mock<ICepService> _serviceMock;
+        private ICepService? _service;
+        private Mock<ICepService>? _serviceMock;
 
         [Fact(DisplayName = "É Possivel executar o Método Create.")]
         public async Task E_Possivel_Executar_Metodo_Create()

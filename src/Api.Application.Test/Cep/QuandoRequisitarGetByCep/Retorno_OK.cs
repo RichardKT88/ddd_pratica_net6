@@ -12,7 +12,7 @@ namespace Api.Application.Test.Cep.QuandoRequisitarGetByCep
 {
     public class Retorno_OK
     {
-        private CepsController _controller;
+        private CepsController? _controller;
 
         [Fact(DisplayName = "É possível Realizar o Get.")]
         public async Task E_Possivel_Invocar_a_Controller_Get()

@@ -16,14 +16,16 @@ namespace Api.Data.Implementations
 
         public async Task<MunicipioEntity> GetCompleteByIBGE(int codIBGE)
         {
-            return await _dataset.Include(m => m.Uf)
+            var result = await _dataset.Include(m => m.Uf)
                 .FirstOrDefaultAsync(m => m.CodIBGE.Equals(codIBGE));
+            return result!;
         }
 
         public async Task<MunicipioEntity> GetCompleteById(Guid id)
         {
-            return await _dataset.Include(m => m.Uf)
-              .FirstOrDefaultAsync(m => m.Id.Equals(id));
+            var result = await _dataset.Include(m => m.Uf)
+             .FirstOrDefaultAsync(m => m.Id.Equals(id));
+            return result!;
         }
     }
 }

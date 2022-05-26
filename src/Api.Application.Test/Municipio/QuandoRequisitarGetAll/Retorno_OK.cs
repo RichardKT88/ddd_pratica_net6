@@ -12,7 +12,7 @@ namespace Api.Application.Test.Municipio.QuandoRequisitarGetAll
 {
     public class Retorno_OK
     {
-        private MunicipiosController _controller;
+        private MunicipiosController? _controller;
 
         [Fact(DisplayName = "É possível Realizar o GetAll.")]
         public async Task E_Possivel_Invocar_a_Controller_GetAll()

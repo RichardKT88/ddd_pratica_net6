@@ -9,8 +9,8 @@ namespace Api.Service.Test.Login
 {
     public class QuandoForExecutadoFindByLogin
     {
-        private ILoginService _service;
-        private Mock<ILoginService> _serviceMock;
+        private ILoginService? _service;
+        private Mock<ILoginService>? _serviceMock;
 
         [Fact(DisplayName = "É Possível executar o Método FindByLogin")]
         public async Task E_Possivel_Executar_Metodo_FindByLogin()

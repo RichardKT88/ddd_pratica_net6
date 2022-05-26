@@ -7,9 +7,9 @@ namespace Api.Service.Test.Municipio
 {
     public class MunicipioTestes
     {
-        public static string NomeMunicipio { get; set; }
+        public static string? NomeMunicipio { get; set; }
         public static int CodigoIBGEMunicipio { get; set; }
-        public static string NomeMunicipioAlterado { get; set; }
+        public static string? NomeMunicipioAlterado { get; set; }
         public static int CodigoIBGEMunicipioAlterado { get; set; }
         public static Guid IdMunicipio { get; set; }
         public static Guid IdUf { get; set; }

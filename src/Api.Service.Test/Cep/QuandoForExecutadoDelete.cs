@@ -9,8 +9,8 @@ namespace Api.Service.Test.Cep
 {
     public class QuandoForExecutadoDelete : CepTestes
     {
-        private ICepService _service;
-        private Mock<ICepService> _serviceMock;
+        private ICepService? _service;
+        private Mock<ICepService>? _serviceMock;
         [Fact(DisplayName = "É possível executar método Delete.")]
         public async Task E_Possivel_Executar_Metodo_Delete()
         {

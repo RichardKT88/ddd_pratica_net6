@@ -10,8 +10,8 @@ namespace Api.Service.Test.Usuario
 {
     public class QuandoForExecutadoGetAll : UsuarioTestes
     {
-        private IUserService _service;
-        private Mock<IUserService> _serviceMock;
+        private IUserService? _service;
+        private Mock<IUserService>? _serviceMock;
 
         [Fact(DisplayName = "É possivel Executar o Método GETAll.")]
         public async Task E_Possivel_Executar_Metodo_GetAll()

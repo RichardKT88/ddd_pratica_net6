@@ -48,7 +48,7 @@ namespace Api.Application.Test.Usuario.QuandoRequisitarCreate
 
             var resultValue = ((CreatedResult)result).Value as UserDtoCreateResult;
             Assert.NotNull(resultValue);
-            Assert.Equal(userDtoCreate.Name, resultValue.Name);
+            Assert.Equal(userDtoCreate.Name, resultValue!.Name);
             Assert.Equal(userDtoCreate.Email, resultValue.Email);
 
 

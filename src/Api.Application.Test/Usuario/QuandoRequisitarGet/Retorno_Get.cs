@@ -37,7 +37,7 @@ namespace Api.Application.Test.Usuario.QuandoRequisitarGet
 
             var resultValue = ((OkObjectResult)result).Value as UserDto;
             Assert.NotNull(resultValue);
-            Assert.Equal(nome, resultValue.Name);
+            Assert.Equal(nome, resultValue!.Name);
             Assert.Equal(email, resultValue.Email);
 
         }

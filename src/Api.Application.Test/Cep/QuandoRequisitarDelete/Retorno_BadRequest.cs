@@ -10,7 +10,7 @@ namespace Api.Application.Test.Cep.QuandoRequisitarDelete
 {
     public class Retorno_BadRequest
     {
-        private CepsController _controller;
+        private CepsController? _controller;
 
         [Fact(DisplayName = "É possível Realizar o Deleted.")]
         public async Task E_Possivel_Invocar_a_Controller_Delete()

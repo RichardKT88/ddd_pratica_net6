@@ -7,8 +7,8 @@ namespace Api.Service.Test.Usuario
 {
     public class QuandoForExecutadoUpdate : UsuarioTestes
     {
-        private IUserService _service;
-        private Mock<IUserService> _serviceMock;
+        private IUserService? _service;
+        private Mock<IUserService>? _serviceMock;
 
         [Fact(DisplayName = "É possivel Executar o Método Update.")]
         public async Task E_Possivel_Executar_Metodo_Update()
@@ -19,7 +19,7 @@ namespace Api.Service.Test.Usuario
 
             var result = await _service.Post(userDtoCreate);
             Assert.NotNull(result);
-            Assert.Equal(NomeUsuario, result.Name);
+            Assert.Equal(NomeUsuario, result!.Name);
             Assert.Equal(EmailUsuario, result.Email);
 
             _serviceMock = new Mock<IUserService>();
@@ -28,7 +28,7 @@ namespace Api.Service.Test.Usuario
 
             var resultUpdate = await _service.Put(userDtoUpdate);
             Assert.NotNull(resultUpdate);
-            Assert.Equal(NomeUsuarioAlterado, resultUpdate.Name);
+            Assert.Equal(NomeUsuarioAlterado, resultUpdate!.Name);
             Assert.Equal(EmailUsuarioAlterado, resultUpdate.Email);
 
         }

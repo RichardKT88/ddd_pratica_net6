@@ -11,14 +11,14 @@ namespace Api.Application.Test.Uf.QuandoRequisitaraGet
 {
     public class Retorno_NotFound
     {
-        private UfsController _controller;
+        private UfsController? _controller;
 
         [Fact(DisplayName = "É possível Realizar o Get.")]
         public async Task E_Possivel_Invocar_a_Controller_Get()
         {
             var serviceMock = new Mock<IUfService>();
 
-            serviceMock.Setup(m => m.Get(It.IsAny<Guid>())).Returns(Task.FromResult((UfDto)null));
+            serviceMock.Setup(m => m.Get(It.IsAny<Guid>())).Returns(Task.FromResult((UfDto?)null)!);
 
             _controller = new UfsController(serviceMock.Object);
             var result = await _controller.Get(Guid.NewGuid());

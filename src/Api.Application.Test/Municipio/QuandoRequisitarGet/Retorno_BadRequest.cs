@@ -11,7 +11,7 @@ namespace Api.Application.Test.Municipio.QuandoRequisitarGet
 {
     public class Retorno_BadRequest
     {
-        private MunicipiosController _controller;
+        private MunicipiosController? _controller;
 
         [Fact(DisplayName = "É possível Realizar o Get.")]
         public async Task E_Possivel_Invocar_a_Controller_Get()

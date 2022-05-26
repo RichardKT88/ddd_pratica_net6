@@ -83,7 +83,7 @@ namespace Api.Application.Controllers
                 var result = await _service.Post(dtoCreate);
                 if (result != null)
                 {
-                    return Created(new Uri(Url.Link("GetCepWithId", new { id = result.Id })), result);
+                    return Created(new Uri(Url.Link("GetCepWithId", new { id = result.Id })!), result);
                 }
                 else
                 {

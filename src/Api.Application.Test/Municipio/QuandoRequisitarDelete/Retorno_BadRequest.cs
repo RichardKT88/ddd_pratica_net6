@@ -10,7 +10,7 @@ namespace Api.Application.Test.Municipio.QuandoRequisitarDelete
 {
     public class Retorno_BadRequest
     {
-        private MunicipiosController _controller;
+        private MunicipiosController? _controller;
 
         [Fact(DisplayName = "É possível Realizar o Deleted.")]
         public async Task E_Possivel_Invocar_a_Controller_Delete()

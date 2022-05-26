@@ -11,7 +11,7 @@ namespace Api.Application.Test.Cep.QuandoRequisitarCreate
 {
     public class Retorno_Created
     {
-        private CepsController _controller;
+        private CepsController? _controller;
 
         [Fact(DisplayName = "É possível Realizar o Created.")]
         public async Task E_Possivel_Invocar_a_Controller_Create()

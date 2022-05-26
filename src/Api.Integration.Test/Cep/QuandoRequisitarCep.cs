@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
@@ -27,11 +25,11 @@ namespace Api.Integration.Test.Cep
             };
 
             //Post
-            var response = await PostJsonAsync(municipioDto, $"{hostApi}municipios", client);
+            var response = await PostJsonAsync(municipioDto, $"{hostApi}municipios", client!);
             var postResult = await response.Content.ReadAsStringAsync();
             var registroPost = JsonConvert.DeserializeObject<MunicipioDtoCreateResult>(postResult);
             Assert.Equal(HttpStatusCode.Created, response.StatusCode);
-            Assert.Equal("São Paulo", registroPost.Nome);
+            Assert.Equal("São Paulo", registroPost!.Nome);
             Assert.Equal(3550308, registroPost.CodIBGE);
             Assert.True(registroPost.Id != default(Guid));
 
@@ -44,11 +42,11 @@ namespace Api.Integration.Test.Cep
             };
 
             //Post
-            response = await PostJsonAsync(cepDto, $"{hostApi}ceps", client);
+            response = await PostJsonAsync(cepDto, $"{hostApi}ceps", client!);
             postResult = await response.Content.ReadAsStringAsync();
             var registroCepPost = JsonConvert.DeserializeObject<CepDtoCreateResult>(postResult);
             Assert.Equal(HttpStatusCode.Created, response.StatusCode);
-            Assert.Equal(cepDto.Cep, registroCepPost.Cep);
+            Assert.Equal(cepDto.Cep, registroCepPost!.Cep);
             Assert.Equal(cepDto.Logradouro, registroCepPost.Logradouro);
             Assert.Equal(cepDto.Numero, registroCepPost.Numero);
             Assert.True(registroCepPost.Id != default(Guid));
@@ -65,12 +63,12 @@ namespace Api.Integration.Test.Cep
             //PUT
             var stringContent = new StringContent(JsonConvert.SerializeObject(cepMunicipioDto),
                                     Encoding.UTF8, "application/json");
-            response = await client.PutAsync($"{hostApi}ceps", stringContent);
+            response = await client!.PutAsync($"{hostApi}ceps", stringContent);
             var jsonResult = await response.Content.ReadAsStringAsync();
             var registroAtualizado = JsonConvert.DeserializeObject<CepDtoUpdateResult>(jsonResult);
 
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-            Assert.Equal(cepMunicipioDto.Logradouro, registroAtualizado.Logradouro);
+            Assert.Equal(cepMunicipioDto.Logradouro, registroAtualizado!.Logradouro);
 
             //GET Id
             response = await client.GetAsync($"{hostApi}ceps/{registroAtualizado.Id}");
@@ -78,7 +76,7 @@ namespace Api.Integration.Test.Cep
             jsonResult = await response.Content.ReadAsStringAsync();
             var registroSelecionado = JsonConvert.DeserializeObject<CepDto>(jsonResult);
             Assert.NotNull(registroSelecionado);
-            Assert.Equal(cepMunicipioDto.Logradouro, registroSelecionado.Logradouro);
+            Assert.Equal(cepMunicipioDto.Logradouro, registroSelecionado!.Logradouro);
 
             //GET Cep
             response = await client.GetAsync($"{hostApi}ceps/byCep/{registroAtualizado.Cep}");
@@ -86,7 +84,7 @@ namespace Api.Integration.Test.Cep
             jsonResult = await response.Content.ReadAsStringAsync();
             registroSelecionado = JsonConvert.DeserializeObject<CepDto>(jsonResult);
             Assert.NotNull(registroSelecionado);
-            Assert.Equal(cepMunicipioDto.Logradouro, registroSelecionado.Logradouro);
+            Assert.Equal(cepMunicipioDto.Logradouro, registroSelecionado!.Logradouro);
 
             //DELETE
             response = await client.DeleteAsync($"{hostApi}ceps/{registroSelecionado.Id}");

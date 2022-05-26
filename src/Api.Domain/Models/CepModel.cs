@@ -5,19 +5,19 @@ namespace Api.Domain.Models
         private string? _cep;
         public string Cep
         {
-            get { return _cep; }
+            get { return _cep!; }
             set { _cep = value; }
         }
-        private string _logradouro;
+        private string? _logradouro;
         public string Logradouro
         {
-            get { return _logradouro; }
+            get { return _logradouro!; }
             set { _logradouro = value; }
         }
-        private string _numero;
+        private string? _numero;
         public string Numero
         {
-            get { return _numero; }
+            get { return _numero!; }
             set { _numero = string.IsNullOrEmpty(value) ? "S/N" : value; }
         }
 

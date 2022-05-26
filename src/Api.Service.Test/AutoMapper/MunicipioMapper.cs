@@ -62,10 +62,10 @@ namespace Api.Service.Test.AutoMapper
             Assert.Equal(userDto.UfId, entity.UfId);
 
             var userDtoCompleto = Mapper.Map<MunicipioDtoCompleto>(listaEntity.FirstOrDefault());
-            Assert.Equal(userDtoCompleto.Id, listaEntity.FirstOrDefault().Id);
-            Assert.Equal(userDtoCompleto.Nome, listaEntity.FirstOrDefault().Nome);
-            Assert.Equal(userDtoCompleto.CodIBGE, listaEntity.FirstOrDefault().CodIBGE);
-            Assert.Equal(userDtoCompleto.UfId, listaEntity.FirstOrDefault().UfId);
+            Assert.Equal(userDtoCompleto.Id, listaEntity.FirstOrDefault()!.Id);
+            Assert.Equal(userDtoCompleto.Nome, listaEntity.FirstOrDefault()!.Nome);
+            Assert.Equal(userDtoCompleto.CodIBGE, listaEntity.FirstOrDefault()!.CodIBGE);
+            Assert.Equal(userDtoCompleto.UfId, listaEntity.FirstOrDefault()!.UfId);
             Assert.NotNull(userDtoCompleto.Uf);
 
             var listaDto = Mapper.Map<List<MunicipioDto>>(listaEntity);

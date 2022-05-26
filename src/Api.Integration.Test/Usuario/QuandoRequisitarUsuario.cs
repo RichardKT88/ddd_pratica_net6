@@ -29,24 +29,24 @@ namespace Api.Integration.Test.Usuario
                 Email = _email
             };
             //POST
-            var response = await PostJsonAsync(userDto, $"{hostApi}users", client);
+            var response = await PostJsonAsync(userDto, $"{hostApi}users", client!);
             var postResult = await response.Content.ReadAsStringAsync();
             var registroPost = JsonConvert.DeserializeObject<UserDtoCreateResult>(postResult);
 
             Assert.Equal(HttpStatusCode.Created, response.StatusCode);
-            Assert.Equal(_name, registroPost.Name);
+            Assert.Equal(_name, registroPost!.Name);
             Assert.Equal(_email, registroPost.Email);
             Assert.True(registroPost.Id != default(Guid));
 
             //Get All
-            response = await client.GetAsync($"{hostApi}users");
+            response = await client!.GetAsync($"{hostApi}users");
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 
             var jsonResult = await response.Content.ReadAsStringAsync();
             var listaFromJson = JsonConvert.DeserializeObject<IEnumerable<UserDto>>(jsonResult);
             Assert.NotNull(listaFromJson);
-            Assert.True(listaFromJson.Count() > 0);
-            Assert.True(listaFromJson.Where(r => r.Id == registroPost.Id).Count() == 1);
+            Assert.True(listaFromJson!.Count() > 0);
+            Assert.True(listaFromJson!.Where(r => r.Id == registroPost.Id).Count() == 1);
 
             var updateUserDto = new UserDtoUpdate()
             {
@@ -62,7 +62,7 @@ namespace Api.Integration.Test.Usuario
             var registroAtualizado = JsonConvert.DeserializeObject<UserDtoUpdateResult>(jsonResult);
 
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-            Assert.NotEqual(registroPost.Name, registroAtualizado.Name);
+            Assert.NotEqual(registroPost.Name, registroAtualizado!.Name);
             Assert.NotEqual(registroPost.Email, registroAtualizado.Email);
 
             //GET Id
@@ -72,7 +72,7 @@ namespace Api.Integration.Test.Usuario
             jsonResult = await response.Content.ReadAsStringAsync();
             var registroSelecionado = JsonConvert.DeserializeObject<UserDto>(jsonResult);
             Assert.NotNull(registroSelecionado);
-            Assert.Equal(registroSelecionado.Name, registroAtualizado.Name);
+            Assert.Equal(registroSelecionado!.Name, registroAtualizado.Name);
             Assert.Equal(registroSelecionado.Email, registroAtualizado.Email);
 
             //DELETE

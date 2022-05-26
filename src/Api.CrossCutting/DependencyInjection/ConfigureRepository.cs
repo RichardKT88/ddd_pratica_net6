@@ -19,10 +19,10 @@ namespace Api.CrossCutting.DependencyInjection
             serviceCollection.AddScoped<IMunicipioRepository, MunicipioImplementation>();
             serviceCollection.AddScoped<ICepRepository, CepImplementation>();
 
-            if (Environment.GetEnvironmentVariable("DATABASE").ToLower() == "SQLSERVER".ToLower())
+            if (Environment.GetEnvironmentVariable("DATABASE")!.ToLower() == "SQLSERVER".ToLower())
             {
                 serviceCollection.AddDbContext<MyContext>(
-                options => options.UseSqlServer(Environment.GetEnvironmentVariable("DB_CONNECTION")));
+                options => options.UseSqlServer(Environment.GetEnvironmentVariable("DB_CONNECTION")!));
             }
             else
             {

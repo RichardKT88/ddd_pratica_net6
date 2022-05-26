@@ -11,7 +11,7 @@ namespace Api.Data.Test
 {
     public class MunicipioCrudCompleto : BaseTest, IClassFixture<DbTeste>
     {
-        private ServiceProvider _serviceProvider;
+        private ServiceProvider? _serviceProvider;
         public MunicipioCrudCompleto(DbTeste dbTeste)
         {
             _serviceProvider = dbTeste.ServiceProvider;
@@ -21,9 +21,9 @@ namespace Api.Data.Test
         [Trait("CRUD", "MunicipioEntity")]
         public async Task E_Possivel_Realizar_CRUD_Municipio()
         {
-            using (var context = _serviceProvider.GetService<MyContext>())
+            using (var context = _serviceProvider!.GetService<MyContext>())
             {
-                MunicipioImplementation _repositorio = new MunicipioImplementation(context);
+                MunicipioImplementation _repositorio = new MunicipioImplementation(context!);
                 MunicipioEntity _entity = new MunicipioEntity
                 {
                     Nome = Faker.Address.City(),
@@ -33,7 +33,7 @@ namespace Api.Data.Test
 
                 var _registroCriado = await _repositorio.InsertAsync(_entity);
                 Assert.NotNull(_registroCriado);
-                Assert.Equal(_entity.Nome, _registroCriado.Nome);
+                Assert.Equal(_entity.Nome, _registroCriado!.Nome);
                 Assert.Equal(_entity.CodIBGE, _registroCriado.CodIBGE);
                 Assert.Equal(_entity.UfId, _registroCriado.UfId);
                 Assert.False(_registroCriado.Id == Guid.Empty);
@@ -42,7 +42,7 @@ namespace Api.Data.Test
                 _entity.Id = _registroCriado.Id;
                 var _registroAtualizado = await _repositorio.UpdateAsync(_entity);
                 Assert.NotNull(_registroAtualizado);
-                Assert.Equal(_entity.Nome, _registroAtualizado.Nome);
+                Assert.Equal(_entity.Nome, _registroAtualizado!.Nome);
                 Assert.Equal(_entity.CodIBGE, _registroAtualizado.CodIBGE);
                 Assert.Equal(_entity.UfId, _registroAtualizado.UfId);
                 Assert.True(_registroCriado.Id == _entity.Id);
@@ -52,7 +52,7 @@ namespace Api.Data.Test
 
                 var _registroSelecionado = await _repositorio.SelectAsync(_registroAtualizado.Id);
                 Assert.NotNull(_registroSelecionado);
-                Assert.Equal(_registroAtualizado.Nome, _registroSelecionado.Nome);
+                Assert.Equal(_registroAtualizado.Nome, _registroSelecionado!.Nome);
                 Assert.Equal(_registroAtualizado.CodIBGE, _registroSelecionado.CodIBGE);
                 Assert.Equal(_registroAtualizado.UfId, _registroSelecionado.UfId);
                 Assert.Null(_registroSelecionado.Uf);

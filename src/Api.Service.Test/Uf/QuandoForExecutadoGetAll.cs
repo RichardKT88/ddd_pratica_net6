@@ -10,8 +10,8 @@ namespace Api.Service.Test.Uf
 {
     public class QuandoForExecutadoGetAll : UfTestes
     {
-        private IUfService _service;
-        private Mock<IUfService> _serviceMock;
+        private IUfService? _service;
+        private Mock<IUfService>? _serviceMock;
 
         [Fact(DisplayName = "É Possivel Executar o Método GETAll.")]
         public async Task E_Possivel_Executar_Metodo_GetAll()

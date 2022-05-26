@@ -31,7 +31,7 @@ namespace Api.Integration.Test
                 });
 
             myContext = application.Services.GetService(typeof(MyContext)) as MyContext;
-            myContext.Database.Migrate();
+            myContext!.Database.Migrate();
 
             mapper = new AutoMapperFixture().GetMapper();
 
@@ -45,11 +45,11 @@ namespace Api.Integration.Test
                 Email = "admin@email.com"
             };
 
-            var resultLogin = await PostJsonAsync(loginDto, $"{hostApi}login", client);
+            var resultLogin = await PostJsonAsync(loginDto, $"{hostApi}login", client!);
             var jsonLogin = await resultLogin.Content.ReadAsStringAsync();
             var loginObject = JsonConvert.DeserializeObject<LoginResponseDto>(jsonLogin);
 
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", loginObject.accessToken);
+            client!.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", loginObject!.accessToken);
         }
 
         public static async Task<HttpResponseMessage> PostJsonAsync(object dataClass, string url, HttpClient client)
@@ -59,8 +59,8 @@ namespace Api.Integration.Test
 
         public void Dispose()
         {
-            myContext.Dispose();
-            client.Dispose();
+            myContext!.Dispose();
+            client!.Dispose();
         }
     }
 
